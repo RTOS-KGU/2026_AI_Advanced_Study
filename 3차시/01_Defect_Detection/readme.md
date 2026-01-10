@@ -86,7 +86,7 @@ WORK_DIR = '/content/drive/MyDrive/여기에/본인의/경로/01_Defect_Detectio
 #### 4-1. 01_train.ipynb (모델 학습)
 1. 첫 번째 셀부터 순서대로 실행 (Shift + Enter)
 2. Google Drive 마운트 권한 요청 시 `계정 선택` → `허용` 클릭
-3. 학습 완료까지 대기 (약 30분~1시간, GPU 성능에 따라 다름)
+3. 학습 완료까지 대기 (약 5~20분)
 4. 학습 완료 후 모델이 `runs/defect/weights/best.pt`에 저장됨
 
 #### 4-2. 02_test.ipynb (모델 평가)
@@ -172,11 +172,12 @@ WORK_DIR = '/content/drive/MyDrive/여기에/본인의/경로/01_Defect_Detectio
 - **비용 절감**: 수동 검사 인력 및 시간 절감
 - **데이터 분석**: 결함 패턴 분석을 통한 공정 개선
 
-## 📝 Notes
+## ⚠️ 주의사항
 
-- Google Colab에서 실행 시 GPU 런타임을 활성화하세요.
-- 데이터셋 경로와 모델 경로를 본인의 Google Drive 구조에 맞게 수정하세요.
-- 학습 시간은 GPU 성능에 따라 달라질 수 있습니다.
+- **GPU 설정 필수**: Google Colab에서 GPU 런타임을 활성화하지 않으면 학습이 매우 느려집니다.
+- **경로 수정**: 각 노트북에서 `WORK_DIR`을 본인의 Google Drive 경로로 수정해야 합니다.
+- **학습 시간**: GPU 성능에 따라 5~20분 소요됩니다. Colab 무료 버전 사용 시 연결이 끊어지지 않도록 주의하세요.
+- **재학습**: 같은 폴더(`runs/defect/`)에 결과가 저장되므로, 재학습 시 이전 결과가 덮어씌워집니다.
 
 ## 🔗 References
 
