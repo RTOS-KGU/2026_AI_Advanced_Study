@@ -5,8 +5,6 @@ Hugging Face에서 GTSRB 데이터셋을 다운로드하고
 train/val/test로 분할하여 로컬에 저장합니다.
 """
 
-import os
-import json
 import random
 from pathlib import Path
 from collections import Counter
@@ -74,18 +72,18 @@ for item in dataset['train']:
             'original_label': item['label']
         })
 
-# 각 클래스당 80개씩 샘플링 및 분할
+# 각 클래스당 240개씩 샘플링 및 분할
 print("\n📦 데이터 분할 및 저장 중...")
 train_data, val_data, test_data = [], [], []
 
 for label in range(5):
     samples = samples_by_class[label]
     random.shuffle(samples)
-    samples = samples[:80]  # 클래스당 80개
+    samples = samples[:240]  # 클래스당 240개
 
-    train_data.extend(samples[:64])   # 64개
-    val_data.extend(samples[64:72])   # 8개
-    test_data.extend(samples[72:80])  # 8개
+    train_data.extend(samples[:192])    # 192개
+    val_data.extend(samples[192:216])   # 24개
+    test_data.extend(samples[216:240])  # 24개
 
 print(f"  - Train: {len(train_data)}장")
 print(f"  - Val: {len(val_data)}장")
@@ -137,23 +135,23 @@ print("""
 data/
 ├── images/
 │   ├── train/
-│   │   ├── class_0/  (64장)
-│   │   ├── class_1/  (64장)
-│   │   ├── class_2/  (64장)
-│   │   ├── class_3/  (64장)
-│   │   └── class_4/  (64장)
+│   │   ├── class_0/  (192장)
+│   │   ├── class_1/  (192장)
+│   │   ├── class_2/  (192장)
+│   │   ├── class_3/  (192장)
+│   │   └── class_4/  (192장)
 │   ├── val/
-│   │   ├── class_0/  (8장)
-│   │   ├── class_1/  (8장)
-│   │   ├── class_2/  (8장)
-│   │   ├── class_3/  (8장)
-│   │   └── class_4/  (8장)
+│   │   ├── class_0/  (24장)
+│   │   ├── class_1/  (24장)
+│   │   ├── class_2/  (24장)
+│   │   ├── class_3/  (24장)
+│   │   └── class_4/  (24장)
 │   └── test/
-│       ├── class_0/  (8장)
-│       ├── class_1/  (8장)
-│       ├── class_2/  (8장)
-│       ├── class_3/  (8장)
-│       └── class_4/  (8장)
+│       ├── class_0/  (24장)
+│       ├── class_1/  (24장)
+│       ├── class_2/  (24장)
+│       ├── class_3/  (24장)
+│       └── class_4/  (24장)
 """)
 
 total_images = len(train_data) + len(val_data) + len(test_data)
